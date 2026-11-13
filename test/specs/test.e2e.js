@@ -1,22 +1,22 @@
 import { browser,expect } from '@wdio/globals'
 import LoginPage from '../pageobjects/login.page.js'
+import RecentCases from '../pageobjects/recentcase.page.js'
 
-describe('My Login application', () => {
-    it('should login with valid credentials', async () => {
-        for (const username of LoginPage.credentials.users) {
+describe('My test', () => {
+    it('should test', async () => {
             await LoginPage.open();
-            await LoginPage.login(username, LoginPage.credentials.password) ;
-            await browser.url('https://www.saucedemo.com/inventory.html');
-            await expect(browser).toHaveUrl('https://www.saucedemo.com/inventory.html');
-            
+            await LoginPage.login(``) ;
+            await expect(RecentCases.openRecent).toExist()
+            await RecentCases.openRecent.click()
+            await expect(RecentCases.openedCases).toExist()
+            for (let position = 1; position <= 5; position++) {
+                const row = await RecentCases.getMainGridRowByPosition(position);
+                await row.doubleClick(); 
+                await browser.back();
+}
+
+
+
             await LoginPage.logout();
-    }
-        for (const username of LoginPage.credentials.users) {
-            await browser.refresh();
-            await LoginPage.open();
-            await LoginPage.login(username, ``) ;
-            await expect(LoginPage.error).toHaveText(expect.stringContaining('Epic sadface'));
-    }
-    })
-})
-;
+
+    })})

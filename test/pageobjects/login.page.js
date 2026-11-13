@@ -3,34 +3,21 @@ import Page from './page.js';
 
 class LoginPage extends Page {
     get inputUsername () {
-        return $('#user-name'); // 
+        return $('input[data-testid="login-username"]'); // 
     }
 
     get inputPassword () {
-        return $('#password');
+        return $('input[data-testid="login-password"]');
     }
 
     get btnSubmit () {
-        return $('input[type="submit"]');
+        return $('button[data-testid="login-submit"]');
     }
 
-    get burgerMenu () {
-        return $('#react-burger-menu-btn');
+    get logoutLink () {
+        return $('button[data-testid="menu-logout-button"]')
     }
 
-    get logoutLink() {
-        return $('#logout_sidebar_link');
-    }
-
-    get error() {
-        return $('h3[data-test="error"]')
-    }
-
-    credentials = {
-        users: ['standard_user', 'problem_user', 'error_user', 'visual_user', 'performance_glitch_user'],
-        password: 'secret_sauce'
-    };
-    
     async login (username, password) {
         await this.inputUsername.setValue(username);
         await this.inputPassword.setValue(password);
@@ -42,7 +29,6 @@ class LoginPage extends Page {
     }
 
     async logout() {
-        await this.burgerMenu.click();
         await this.logoutLink.click();
     }
 }
